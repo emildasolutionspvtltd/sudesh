@@ -1,0 +1,1784 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+  branch: master
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Twitter Image
+            name: twitter:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: 'Original text: Home, key: 2268ff'
+            label: Text
+            name: 2268ff
+            widget: string
+          - hint: 'Original text: 01, key: 601'
+            label: Text
+            name: '601'
+            widget: string
+          - hint: 'Original text: 3d Printing, key: 5d235ae4'
+            label: Text
+            name: 5d235ae4
+            widget: string
+          - hint: 'Original text: 02, key: 602'
+            label: Text
+            name: '602'
+            widget: string
+          - hint: 'Original text: Design Optimization, key: -42d3ff71'
+            label: Text
+            name: '-42d3ff71'
+            widget: string
+          - hint: 'Original text: 03, key: 603'
+            label: Text
+            name: '603'
+            widget: string
+          - hint: 'Original text: About Us, key: 645efc51'
+            label: Text
+            name: 645efc51
+            widget: string
+          - hint: 'Original text: 04, key: 604'
+            label: Text
+            name: '604'
+            widget: string
+          - hint: 'Original text: Contact Us, key: 7f2746de'
+            label: Text
+            name: 7f2746de
+            widget: string
+          - hint: 'Original text: 05, key: 605'
+            label: Text
+            name: '605'
+            widget: string
+          - hint: 'Original text: Manufacturing the Future, Today., key: -4168abab'
+            label: Text
+            name: '-4168abab'
+            widget: string
+          - hint: 'Original text: Bring your, key: 9703e21'
+            label: Text
+            name: '9703e21'
+            widget: string
+          - hint: 'Original text: Imagination, key: -1a4c22ba'
+            label: Text
+            name: '-1a4c22ba'
+            widget: string
+          - hint: >-
+              Original text:  to life with our advanced Manufacturing
+              Technology., key: -232c284f
+            label: Text
+            name: '-232c284f'
+            widget: string
+          - hint: 'Original text: Begin Your 3D Printing Journey!, key: 3b8a6af3'
+            label: Text
+            name: 3b8a6af3
+            widget: string
+          - hint: 'Original text: Start Printing, key: 7e996453'
+            label: Text
+            name: '7e996453'
+            widget: string
+          - hint: 'Original text: Know More, key: -30663036'
+            label: Text
+            name: '-30663036'
+            widget: string
+          - hint: 'Original text: Optimizing for Excellence, , key: -5678caf'
+            label: Text
+            name: '-5678caf'
+            widget: string
+          - hint: 'Original text: Transformative 3D Design Solutions, key: -6a40aaa0'
+            label: Text
+            name: '-6a40aaa0'
+            widget: string
+          - hint: 'Original text: 420, key: c972'
+            label: Text
+            name: c972
+            widget: string
+          - hint: 'Original text: Projects completed, key: 4a4b1e45'
+            label: Text
+            name: 4a4b1e45
+            widget: string
+          - hint: 'Original text: 10+, key: bdec'
+            label: Text
+            name: bdec
+            widget: string
+          - hint: 'Original text: Years of Experience, key: 344c5089'
+            label: Text
+            name: 344c5089
+            widget: string
+          - hint: >-
+              Original text: "Discover how DMI 3D elevates design to new heights
+              with our state-of-the-art optimization techniques. Tailoring
+              solutions for maximum efficiency, functionality, and aesthetics.",
+              key: 24a65469
+            label: Text
+            name: 24a65469
+            widget: text
+          - hint: 'Original text: Get Started, key: -364d0a89'
+            label: Text
+            name: '-364d0a89'
+            widget: string
+          - hint: 'Original text: Experience the, key: -37c15325'
+            label: Text
+            name: '-37c15325'
+            widget: string
+          - hint: 'Original text: next, key: 338af3'
+            label: Text
+            name: 338af3
+            widget: string
+          - hint: 'Original text:  generation of Product Design, key: -8302d30'
+            label: Text
+            name: '-8302d30'
+            widget: string
+          - hint: 'Original text: Optimize My Design, key: -41bb4eb1'
+            label: Text
+            name: '-41bb4eb1'
+            widget: string
+          - hint: 'Original text: Find Out How, key: 2bf5b4f7'
+            label: Text
+            name: 2bf5b4f7
+            widget: string
+          - hint: >-
+              Original text: At DMI3D, we blend cutting-edge technology with
+              creative passion. Specializing in 3D printing and design
+              optimization, our commitment is to transform visions into tangible
+              excellence. Together, let's redefine digital manufacturing., key:
+              -3c8a0dd6
+            label: Text
+            name: '-3c8a0dd6'
+            widget: text
+          - hint: 'Original text: Get Started on Your Next Project, key: 758118a1'
+            label: Text
+            name: 758118a1
+            widget: string
+          - hint: >-
+              Original text: Embrace the future of manufacturing and design with
+              our premier 3D printing service. Reach out to us today and let's
+              shape the future together., key: 72f4992
+            label: Text
+            name: 72f4992
+            widget: text
+          - hint: 'Original text: Order Now, key: 60030ec4'
+            label: Text
+            name: 60030ec4
+            widget: string
+          - hint: 'Original text: Get in Touch, key: -53f399f2'
+            label: Text
+            name: '-53f399f2'
+            widget: string
+          - hint: "Original text: Send Us \_Email, key: -13dedffa"
+            label: Text
+            name: '-13dedffa'
+            widget: string
+          - hint: 'Original text: info@dmi3d.in, key: 424c37f4'
+            label: Text
+            name: 424c37f4
+            widget: string
+          - hint: 'Original text: Whatsapp, key: 772ccdb2'
+            label: Text
+            name: 772ccdb2
+            widget: string
+          - hint: 'Original text: +91 8197148093, key: -38a38cf7'
+            label: Text
+            name: '-38a38cf7'
+            widget: string
+          - hint: 'Original text: Our Office, key: -6e65cdb0'
+            label: Text
+            name: '-6e65cdb0'
+            widget: string
+          - hint: 'Original text: Shivaji Nagar, Bangalore, key: 10325b68'
+            label: Text
+            name: 10325b68
+            widget: string
+          - hint: 'Original text: 2023 DMI3d. All right reserved., key: -5498c99f'
+            label: Text
+            name: '-5498c99f'
+            widget: string
+          - hint: 'Original text: Privacy Policy, key: -3fbde6f6'
+            label: Text
+            name: '-3fbde6f6'
+            widget: string
+          - hint: 'Original text: Terms of Service, key: -7fe2d65b'
+            label: Text
+            name: '-7fe2d65b'
+            widget: string
+          - hint: 'Original text: Cookies Settings, key: 243e72d4'
+            label: Text
+            name: 243e72d4
+            widget: string
+          - hint: 'Original text: Designed and developed by , key: -6bb908a7'
+            label: Text
+            name: '-6bb908a7'
+            widget: string
+          - hint: 'Original text: Emilda Solutions, key: -7c9b8a7e'
+            label: Text
+            name: '-7c9b8a7e'
+            widget: string
+          - hint: 'Original text: Transforming , key: -36ac9636'
+            label: Text
+            name: '-36ac9636'
+            widget: string
+          - hint: 'Original text: image, key: 5faa95b'
+            label: Text
+            name: 5faa95b
+            widget: string
+          - hint: 'Original text: Concepts into Reality, key: 5cf58345'
+            label: Text
+            name: 5cf58345
+            widget: string
+          - hint: >-
+              Original text: Explore a wide range of materials and colors
+              tailored for different applications ensuring strength and
+              flexibility that meet your project requirements. , key: 778b1a2d
+            label: Text
+            name: 778b1a2d
+            widget: text
+          - hint: 'Original text: Experience 3D Printing., key: 40a71480'
+            label: Text
+            name: 40a71480
+            widget: string
+          - hint: 'Original text: Fused Deposition Modelling., key: 7769df48'
+            label: Text
+            name: 7769df48
+            widget: string
+          - hint: >-
+              Original text: 3D printed materials are becoming increasingly
+              popular for a variety of applications. They are typically
+              lightweight, have good strength–to–weight ratio, are
+              cost–effective, and can be easily customized for specific
+              projects.Fused Deposition Modeling (FDM) is a 3D printing
+              technology that works by melting and extruding thermoplastic
+              filament to build up layers and create a 3D object. The filament
+              is fed through a heated nozzle, melted, and deposited onto the
+              build platform, where it cools and solidifies. The process is
+              repeated layer by layer until the entire object is built. This
+              technology is widely used for prototyping, manufacturing, and
+              product development due to its affordability and versatility. With
+              FDM you can produce objects with high accuracy, strength, and
+              durability., key: -7f8d4e8
+            label: Text
+            name: '-7f8d4e8'
+            widget: text
+          - hint: >-
+              Original text: Discover the power of FDM and unleash your
+              creativity., key: 362692a7
+            label: Text
+            name: 362692a7
+            widget: string
+          - hint: 'Original text: / , key: 5d1'
+            label: Text
+            name: 5d1
+            widget: string
+          - hint: 'Original text:  Filament extrusion technology, key: -5c8ee83'
+            label: Text
+            name: '-5c8ee83'
+            widget: string
+          - hint: 'Original text:  Dimensional tolerance – ± 0.2 mm, key: 443d9ea'
+            label: Text
+            name: 443d9ea
+            widget: string
+          - hint: >-
+              Original text:  Max Single Print Size – 360 mm X 360 mm X 350 mm,
+              key: -5c409e71
+            label: Text
+            name: '-5c409e71'
+            widget: string
+          - hint: 'Original text:  Dual color print, key: 1f12ae4c'
+            label: Text
+            name: 1f12ae4c
+            widget: string
+          - hint: >-
+              Original text:  15 different industrial and consumer grade
+              materials, key: -36d4e5a
+            label: Text
+            name: '-36d4e5a'
+            widget: string
+          - hint: >-
+              Original text: Experience Excellence in 3D Printing, key:
+              -5b73376d
+            label: Text
+            name: '-5b73376d'
+            widget: string
+          - hint: 'Original text: Variety of Materials, key: 771d09fb'
+            label: Text
+            name: 771d09fb
+            widget: string
+          - hint: >-
+              Original text: Explore a diverse selection of premium materials
+              and colors tailored for your needs., key: 1c5c47ca
+            label: Text
+            name: 1c5c47ca
+            widget: string
+          - hint: 'Original text: Energy Efficient Manufacturing , key: -1d6c18c7'
+            label: Text
+            name: '-1d6c18c7'
+            widget: string
+          - hint: >-
+              Original text: FromOptimised production workflow to ecofriendly
+              materials, we are committed to agreener future in additive
+              Manufacturing., key: 3e4488d3
+            label: Text
+            name: 3e4488d3
+            widget: text
+          - hint: 'Original text: Quick Turnaround Time, key: -44a2c7b0'
+            label: Text
+            name: '-44a2c7b0'
+            widget: string
+          - hint: >-
+              Original text: Experience rapid delivery, turning designs into
+              tangible realities with unmatched speed., key: -2f293a4c
+            label: Text
+            name: '-2f293a4c'
+            widget: string
+          - hint: 'Original text: High Precision, key: -61e60080'
+            label: Text
+            name: '-61e60080'
+            widget: string
+          - hint: >-
+              Original text: Achieve unparalleled accuracy, ensuring your
+              designs come to life with perfection., key: -2d536e3e
+            label: Text
+            name: '-2d536e3e'
+            widget: string
+          - hint: >-
+              Original text: A simple, yet effective six step process, key:
+              151cb20f
+            label: Text
+            name: 151cb20f
+            widget: string
+          - hint: 'Original text: 1. Submit Your Request, key: -b21d7f9'
+            label: Text
+            name: '-b21d7f9'
+            widget: string
+          - hint: >-
+              Original text: Kickstart your 3D journey; share your vision with
+              us., key: -12d1cb5f
+            label: Text
+            name: '-12d1cb5f'
+            widget: string
+          - hint: 'Original text: 2. Design Submission, key: e54be0a'
+            label: Text
+            name: e54be0a
+            widget: string
+          - hint: >-
+              Original text: Provide your detailed 3D design for optimal
+              printing results., key: -b11a927
+            label: Text
+            name: '-b11a927'
+            widget: string
+          - hint: 'Original text: 3. Material Selection, key: -11998848'
+            label: Text
+            name: '-11998848'
+            widget: string
+          - hint: >-
+              Original text: Choose the best-suited material for durability and
+              aesthetics., key: -38ce25ac
+            label: Text
+            name: '-38ce25ac'
+            widget: string
+          - hint: 'Original text: 4. Estimation and Confirmation, key: -26b13553'
+            label: Text
+            name: '-26b13553'
+            widget: string
+          - hint: >-
+              Original text: Receive cost and time estimates; confirm to
+              proceed., key: 7bbc47e9
+            label: Text
+            name: 7bbc47e9
+            widget: string
+          - hint: "Original text: 5. Material Printing & \_Quality Check, key: 383c50da"
+            label: Text
+            name: 383c50da
+            widget: string
+          - hint: >-
+              Original text: Precision printing followed by rigorous quality
+              inspections., key: -31fee84c
+            label: Text
+            name: '-31fee84c'
+            widget: string
+          - hint: 'Original text: 6. Delivery, key: aed687c'
+            label: Text
+            name: aed687c
+            widget: string
+          - hint: >-
+              Original text: Your 3D masterpiece, delivered safely to your
+              doorstep., key: 655e6960
+            label: Text
+            name: '655e6960'
+            widget: string
+          - hint: 'Original text: Frequently Asked Questions, key: -475b7d60'
+            label: Text
+            name: '-475b7d60'
+            widget: string
+          - hint: 'Original text: /, key: 2f'
+            label: Text
+            name: 2f
+            widget: string
+          - hint: >-
+              Original text: How long does the 3D printing process typically
+              take?, key: 6cd8bf86
+            label: Text
+            name: 6cd8bf86
+            widget: string
+          - hint: >-
+              Original text: The duration varies based on complexity, typically
+              ranging from hours for small prints to days for complex ones.,
+              key: 44466bf7
+            label: Text
+            name: 44466bf7
+            widget: text
+          - hint: >-
+              Original text: What materials do you offer for 3D printing?, key:
+              -4ee0e744
+            label: Text
+            name: '-4ee0e744'
+            widget: string
+          - hint: >-
+              Original text: You can select from a range of 12 Different
+              materials with each tailored for different applications., key:
+              5f4a60ba
+            label: Text
+            name: 5f4a60ba
+            widget: text
+          - hint: >-
+              Original text: Can you assist with design optimization and
+              modifications?, key: 91a4ad6
+            label: Text
+            name: 91a4ad6
+            widget: string
+          - hint: >-
+              Original text: Yes, our experienced designers can modify/optimize
+              your designs to ensure better printability., key: 732e896b
+            label: Text
+            name: 732e896b
+            widget: text
+          - hint: >-
+              Original text: What file formats do you accept for 3D printing?,
+              key: 2506fe00
+            label: Text
+            name: 2506fe00
+            widget: string
+          - hint: >-
+              Original text: We accept formats like STL, OBJ, and STEP, and can
+              assist with compatibility questions., key: 2852e921
+            label: Text
+            name: '2852e921'
+            widget: string
+          - hint: >-
+              Original text: Voices from Our Satisfied 3D Visionaries., key:
+              -4795bda
+            label: Text
+            name: '-4795bda'
+            widget: string
+          - hint: >-
+              Original text: "My experience with DMI3D was truly exceptional.
+              They took my intricate design and turned it into a flawless 3D
+              print, exceeding my expectations every step of the way. I highly
+              recommend DMI3D for anyone looking to bring their 3D visions to
+              life; they truly go above and beyond.", key: -52cd9f22
+            label: Text
+            name: '-52cd9f22'
+            widget: text
+          - hint: 'Original text: Sarah Khan, key: 629ec67f'
+            label: Text
+            name: 629ec67f
+            widget: string
+          - hint: 'Original text: Founder, Cool Katz, key: -2e04ed10'
+            label: Text
+            name: '-2e04ed10'
+            widget: string
+          - hint: >-
+              Original text: "Having worked with various 3D printing services,
+              DMI3D stands out as the gold standard. Their dedication to
+              quality, constant communication, and commitment to excellence made
+              all the difference in turning my vision into a true masterpiece.",
+              key: -346e8192
+            label: Text
+            name: '-346e8192'
+            widget: text
+          - hint: 'Original text: Ajay Mishra, key: 62008dbf'
+            label: Text
+            name: 62008dbf
+            widget: string
+          - hint: 'Original text: Founder, Harkin, key: 5a0dc8ba'
+            label: Text
+            name: 5a0dc8ba
+            widget: string
+          - hint: >-
+              Original text: There’s something good in every project. Just look
+              for it., key: 668bc0d9
+            label: Text
+            name: 668bc0d9
+            widget: string
+          - hint: >-
+              Original text: Explore our gallery and discover the hidden beauty
+              in each project, where innovation meets artistry., key: -2b09449
+            label: Text
+            name: '-2b09449'
+            widget: text
+          - hint: 'Original text: Pioneering 3D Frontiers Together., key: 594733c3'
+            label: Text
+            name: 594733c3
+            widget: string
+          - hint: >-
+              Original text: Our vision is to lead the way in 3DPrinting and
+              Design Optimization, Setting new industry standards for Precision
+              and sustainability. Our commitment to excellence and customer
+              satisfaction is at the heart of everything we do, and we are proud
+              to offer a wide range of services that are both accessible and
+              affordable., key: 1c34f468
+            label: Text
+            name: 1c34f468
+            widget: text
+          - hint: >-
+              Original text: DMI3D was setup with a sole aim of showcasing the
+              possibilities of 3D printing technology. Our mission is to empower
+              individuals and businesses to bring their innovative ideas to life
+              through advanced 3D printing technology. We strive to provide
+              fast, affordable, and high-quality 3D printing services that meet
+              the unique needs of each of our clients. Our goal is to
+              continually push the boundaries of what’s possible with3D
+              printing, and to be the leading provider of 3D printing solutions
+              that help our clients turn their vision into a reality., key:
+              4c1207de
+            label: Text
+            name: 4c1207de
+            widget: text
+          - hint: >-
+              Original text: DMI3D is all about turning ideas into reality.
+              We're here to empower your imagination and assist you in bringing
+              your visions to life through 3D printing. Thank you for joining us
+              on this journey where innovation knows no bounds., key: 436413a4
+            label: Text
+            name: 436413a4
+            widget: text
+          - hint: 'Original text: Anirudh, key: 302759c3'
+            label: Text
+            name: 302759c3
+            widget: string
+          - hint: "Original text: Founder, \_DMI3D, key: -1171c24c"
+            label: Text
+            name: '-1171c24c'
+            widget: string
+          - hint: 'Original text: Embark on Your Next Project, key: -105f0dc8'
+            label: Text
+            name: '-105f0dc8'
+            widget: string
+          - hint: >-
+              Original text: Ready to bring your ideas to life? DMI3D is here to
+              help you get started with 3D printing. Let's make it happen., key:
+              8365120
+            label: Text
+            name: '8365120'
+            widget: text
+          - hint: 'Original text: admin@dmi3d.in, key: -e86818d'
+            label: Text
+            name: '-e86818d'
+            widget: string
+          - hint: 'Original text: Sadhashiva Nagar, Bangalore, key: -1231072a'
+            label: Text
+            name: '-1231072a'
+            widget: string
+          - hint: 'Original text: Let''s talk, key: -13e0cf3b'
+            label: Text
+            name: '-13e0cf3b'
+            widget: string
+          - hint: >-
+              Original text: Reach out to DMI 3D – where your ideas meet our
+              innovative solutions., key: -6f14898c
+            label: Text
+            name: '-6f14898c'
+            widget: string
+          - hint: 'Original text: Our email, key: 5eb85a8'
+            label: Text
+            name: 5eb85a8
+            widget: string
+          - hint: 'Original text: Phone us, key: -48737150'
+            label: Text
+            name: '-48737150'
+            widget: string
+          - hint: 'Original text: Find us, key: 305d2245'
+            label: Text
+            name: 305d2245
+            widget: string
+          - hint: 'Original text: Click here, key: 45060ba8'
+            label: Text
+            name: 45060ba8
+            widget: string
+          - hint: 'Original text: Name, key: 24eeab'
+            label: Text
+            name: 24eeab
+            widget: string
+          - hint: 'Original text: Email, key: 3ff5b7c'
+            label: Text
+            name: 3ff5b7c
+            widget: string
+          - hint: 'Original text: Message, key: -63dc6819'
+            label: Text
+            name: '-63dc6819'
+            widget: string
+          - hint: >-
+              Original text: Thank you! Your submission has been received!, key:
+              5a0ea5a1
+            label: Text
+            name: 5a0ea5a1
+            widget: string
+          - hint: >-
+              Original text: Oops! Something went wrong while submitting the
+              form., key: -7c112e99
+            label: Text
+            name: '-7c112e99'
+            widget: string
+          - hint: 'Original text: Frequently Asked Questions (FAQ, key: -945b0b2'
+            label: Text
+            name: '-945b0b2'
+            widget: string
+          - hint: >-
+              Original text: We believe in making life-long connections through
+              great communication., key: c6c101c
+            label: Text
+            name: c6c101c
+            widget: string
+          - hint: >-
+              Original text: Who is DMI3D, and what services do you offer?, key:
+              2b873599
+            label: Text
+            name: 2b873599
+            widget: string
+          - hint: >-
+              Original text: DMI3D is a 3D printing company specializing in
+              Fused Deposition Modeling (FDM) technology, offering services for
+              prototyping, manufacturing, and product development., key:
+              18e9a44f
+            label: Text
+            name: 18e9a44f
+            widget: text
+          - hint: >-
+              Original text: What sets DMI3D apart from other 3D printing
+              companies?, key: -addb1a8
+            label: Text
+            name: '-addb1a8'
+            widget: string
+          - hint: >-
+              Original text: DMI3D stands out for its wide range of material
+              options, high precision, and commitment to sustainability and
+              innovation in 3D printing., key: f62fb6e
+            label: Text
+            name: f62fb6e
+            widget: text
+          - hint: >-
+              Original text: How can I request a quote or initiate a project
+              with DMI3D?, key: -641caf93
+            label: Text
+            name: '-641caf93'
+            widget: string
+          - hint: >-
+              Original text: To request a quote or start a project with DMI3D,
+              visit our website's contact section or email us directly at
+              info@dmi3d.in., key: 3ae2040e
+            label: Text
+            name: 3ae2040e
+            widget: text
+          - hint: >-
+              Original text: What is DMI3D's mission and vision for the future?,
+              key: -2082e028
+            label: Text
+            name: '-2082e028'
+            widget: string
+          - hint: >-
+              Original text: DMI3D's mission is to revolutionize manufacturing
+              and prototyping through advanced FDM technology, with a vision to
+              lead in sustainable, innovative 3D printing solutions., key:
+              3bf3543a
+            label: Text
+            name: 3bf3543a
+            widget: text
+          - hint: >-
+              Original text: Optimize, Innovate, and Excel in Design, key:
+              -4ccb32c0
+            label: Text
+            name: '-4ccb32c0'
+            widget: string
+          - hint: >-
+              Original text: Unlock superior design performance and innovation
+              with our expert optimization services, ensuring your project not
+              only meets, but exceeds the demanding market standards.", key:
+              -2ec8f810
+            label: Text
+            name: '-2ec8f810'
+            widget: text
+          - hint: >-
+              Original text: Infinite Ideas, One Algorithm: Generative Design,
+              key: -16c07c1
+            label: Text
+            name: '-16c07c1'
+            widget: string
+          - hint: >-
+              Original text: Discover the transformative potential of AI
+              assisted Design with Autodesk® Generative Design Extension. This
+              computational method employs a sophisticated Iterative algorithm
+              and Artificial Intelligence to generate multiple design solutions
+              based on manufacturing methods and predefined constraints. We
+              meticulously handle the generative design process on your behalf.
+              Unveiling efficient design solutions and accelerating the design
+              process. Embrace a future where your design aspirations are
+              seamlessly translated into optimized, innovative solutions through
+              our expertly managed Generative Design Services., key: -e90faca
+            label: Text
+            name: '-e90faca'
+            widget: text
+          - hint: >-
+              Original text: A simple, yet effective Three step process, key:
+              13f6d173
+            label: Text
+            name: 13f6d173
+            widget: string
+          - hint: 'Original text: 1. Fill the type form., key: 7728982d'
+            label: Text
+            name: 7728982d
+            widget: string
+          - hint: >-
+              Original text: Specify your project requirements and desired fill
+              type., key: -140a45df
+            label: Text
+            name: '-140a45df'
+            widget: string
+          - hint: 'Original text: 2. Share contact Details., key: 6551eef1'
+            label: Text
+            name: 6551eef1
+            widget: string
+          - hint: >-
+              Original text: Provide your contact details for direct
+              communication., key: -47570474
+            label: Text
+            name: '-47570474'
+            widget: string
+          - hint: 'Original text: 3. Book a Consultation., key: -73bee14c'
+            label: Text
+            name: '-73bee14c'
+            widget: string
+          - hint: >-
+              Original text: Book a comprehensive consultation to discuss
+              further details., key: aa335f8
+            label: Text
+            name: aa335f8
+            widget: string
+          - hint: "Original text: Send Us an \_Email, key: 494e94c5"
+            label: Text
+            name: 494e94c5
+            widget: string
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: 'Original link: /, key: 2f'
+            label: Link
+            name: 2f
+            widget: string
+          - hint: 'Original link: /3d-printing/, key: 19ed22d'
+            label: Link
+            name: 19ed22d
+            widget: string
+          - hint: 'Original link: /optimization-service/, key: -46567055'
+            label: Link
+            name: '-46567055'
+            widget: string
+          - hint: 'Original link: /about-us/, key: -766f6c3e'
+            label: Link
+            name: '-766f6c3e'
+            widget: string
+          - hint: 'Original link: /contact-us/, key: 6bfbaa95'
+            label: Link
+            name: 6bfbaa95
+            widget: string
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+          - hint: 'Original link: https://dmi3d.web.app/, key: 45df5ad4'
+            label: Link
+            name: 45df5ad4
+            widget: string
+          - hint: 'Original link: https://www.facebook.com/dmi3d.in, key: 33080292'
+            label: Link
+            name: '33080292'
+            widget: string
+          - hint: 'Original link: https://twitter.com/DMI3D_IN, key: 1b660a8b'
+            label: Link
+            name: 1b660a8b
+            widget: string
+          - hint: 'Original link: https://www.instagram.com/dmi3d.in/, key: -37027803'
+            label: Link
+            name: '-37027803'
+            widget: string
+          - hint: >-
+              Original link:
+              https://www.freeprivacypolicy.com/live/c6c08b65-f664-417c-98c9-e1808347f138,
+              key: -5c14edd0
+            label: Link
+            name: '-5c14edd0'
+            widget: string
+          - hint: >-
+              Original link:
+              https://www.freeprivacypolicy.com/live/cf595708-202c-4b16-850c-9f12b9310022,
+              key: -79fc4889
+            label: Link
+            name: '-79fc4889'
+            widget: string
+          - hint: 'Original link: https://www.emildasolutions.com/, key: 6184bf70'
+            label: Link
+            name: 6184bf70
+            widget: string
+          - hint: >-
+              Original link: mailto:info@dmi3d.in?subject=From%20the%20website,
+              key: 5d8be934
+            label: Link
+            name: 5d8be934
+            widget: string
+          - hint: 'Original link: tel:+918197148093, key: -72fc1910'
+            label: Link
+            name: '-72fc1910'
+            widget: string
+          - hint: >-
+              Original link: https://maps.app.goo.gl/cCTPcLYqrshQBGAX6, key:
+              -2c1682fb
+            label: Link
+            name: '-2c1682fb'
+            widget: string
+          - hint: >-
+              Original link: https://miigt9uhh4s.typeform.com/to/bexJihLz, key:
+              -55ef6500
+            label: Link
+            name: '-55ef6500'
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: i3176cf59
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 233ae2aa
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 3131569a
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i5ba07f87
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i713f326a
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-3789ec5f'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 7919f9de
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-5b081dd8'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 4b5242ee
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 84efe4c
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 7f90668
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-7c7bb757'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 26d45e7d
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-37bec948'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 6895906c
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 36c5d81b
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-3078ac27'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-3bf21d8b'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-33bb037c'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 10dbfeaa
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-5719196c'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-35e32b41'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 440eb561
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-35f142c2'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 26e275fe
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-360e3d78'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-4679763c'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-466b5ebb'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-465d473a'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-464f2fb9'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-4dd4dd78'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-3e20d189'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 402a5fa9
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 7c6924d9
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 3b810c16
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-1ec16c37'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 9ec6d2c
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: a4f11b3
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 12e5644f
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-33048dd9'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 86ff291
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 47a1a03c
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-1ef9ca3b'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-4fbba8d1'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: f190e8a
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 613fe128
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-5b8d6bdb'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: daaab70
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 36c40eae
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-6f4e6e6e'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-6f4056ed'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-628f0b4c'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 26f08d7f
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 26fea500
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-46411838'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-728414d7'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-5a882a20'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 1274a847
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+publish_mode: editorial_workflow
